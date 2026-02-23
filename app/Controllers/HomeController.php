@@ -14,18 +14,23 @@ class HomeController extends BaseController
 {
     static protected int $CONTACT_NAME_MAX_LENGTH = 60;
     static protected int $SUBJECT_MAX_LENGTH = 60;
+    static protected int $MESSAGE_MAX_LENGTH = 3000;
+    static protected int $MESSAGE_MIN_LENGTH = 10;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index(): string {
+    public function index(): string
+    {
         return $this->twig->render('index.html.twig', [
             'q' => array_key_exists('q', $_GET) ? $_GET['q'] : ''
         ]);
     }
 
-    public function post(): void {
+    public function post(): void
+    {
         $inputs = (object) $_POST;
         [$validated, $errors] = $this->ValidateInputs($inputs);
 
@@ -74,37 +79,66 @@ class HomeController extends BaseController
         }
     }
 
-    protected function ValidateInputs(\stdClass $inputs): array {
+    protected function ValidateInputs(\stdClass $inputs): array
+    {
         $errors = [];
 
-        if (property_exists($inputs, 'email') === false || empty($inputs->email)) {
+        $email = property_exists($inputs, 'email') && is_string($inputs->email)
+            ? trim($inputs->email)
+            : '';
+        $nome = property_exists($inputs, 'nome') && is_string($inputs->nome)
+            ? trim($inputs->nome)
+            : '';
+        $assunto = property_exists($inputs, 'assunto') && is_string($inputs->assunto)
+            ? trim($inputs->assunto)
+            : '';
+        $mensagem = property_exists($inputs, 'mensagem') && is_string($inputs->mensagem)
+            ? trim($inputs->mensagem)
+            : '';
+
+        if ($email === '') {
             $errors['email'] = 'O campo Email para Contato é obrigatório.';
-        } else if (is_string($inputs->email) === false) {
-            $errors['email'] = 'O campo Email para Contato precisa ser uma string.';
-        } else if (filter_var($inputs->email, FILTER_VALIDATE_EMAIL) === false) {
+        } else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             $errors['email'] = 'O campo Email para Contato não está num formato válido.';
+        } else if (strlen($email) > 254) {
+            $errors['email'] = 'O campo Email para Contato é muito longo.';
+        } else if (preg_match('/[\r\n]/', $email) === 1) {
+            $errors['email'] = 'O campo Email para Contato contém caracteres inválidos.';
         }
 
-        if (property_exists($inputs, 'nome') === false || empty($inputs->nome)) {
+        if ($nome === '') {
             $errors['nome'] = 'O campo Nome é obrigatório.';
-        } else if (is_string($inputs->nome) === false) {
-            $errors['nome'] = 'O campo Nome deve ser uma string.';
-        } else if (strlen($inputs->email) > static::$CONTACT_NAME_MAX_LENGTH) {
+        } else if (strlen($nome) > static::$CONTACT_NAME_MAX_LENGTH) {
             $errors['nome'] = 'O campo nome precisa ter no máximo ' . static::$CONTACT_NAME_MAX_LENGTH . ' caracteres.';
+        } else if (preg_match('/^[\p{L}\p{M}0-9\s\.' . "'" . '-]+$/u', $nome) !== 1) {
+            $errors['nome'] = 'O campo Nome contém caracteres inválidos.';
         }
 
-        if (property_exists($inputs, 'assunto') === false || empty($inputs->assunto)) {
+        if ($assunto === '') {
             $errors['assunto'] = 'O campo Assunto é obrigatório.';
-        } else if (is_string($inputs->assunto) == false) {
-            $errors['assunto'] = 'O campo Assunto deve ser uma string.';
-        } else if (strlen($inputs->assunto) > static::$SUBJECT_MAX_LENGTH) {
-            $errors['assunto'] = 'O campo Assunto precisa ter no máximo '. static::$SUBJECT_MAX_LENGTH . ' caracteres';
+        } else if (strlen($assunto) > static::$SUBJECT_MAX_LENGTH) {
+            $errors['assunto'] = 'O campo Assunto precisa ter no máximo ' . static::$SUBJECT_MAX_LENGTH . ' caracteres';
+        } else if (preg_match('/[\r\n]/', $assunto) === 1) {
+            $errors['assunto'] = 'O campo Assunto contém caracteres inválidos.';
         }
 
-        if (property_exists($inputs, 'mensagem') === false || empty($inputs->mensagem)) {
+        if ($mensagem === '') {
             $errors['mensagem'] = 'O campo Mensagem é obrigatório.';
-        } else if (is_string($inputs->mensagem) === false) {
-            $errors['mensagem'] = 'O campo Mensagem deve ser uma string.';
+        } else if (strlen($mensagem) < static::$MESSAGE_MIN_LENGTH) {
+            $errors['mensagem'] = 'O campo Mensagem precisa ter no mínimo ' . static::$MESSAGE_MIN_LENGTH . ' caracteres.';
+        } else if (strlen($mensagem) > static::$MESSAGE_MAX_LENGTH) {
+            $errors['mensagem'] = 'O campo Mensagem precisa ter no máximo ' . static::$MESSAGE_MAX_LENGTH . ' caracteres.';
+        } else if (preg_match('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/u', $mensagem) === 1) {
+            $errors['mensagem'] = 'O campo Mensagem contém caracteres inválidos.';
+        }
+
+        $inputs->email = $email;
+        $inputs->nome = $nome;
+        $inputs->assunto = $assunto;
+        $inputs->mensagem = $mensagem;
+
+        if (empty($errors) && $this->HasBlockedContent($assunto, $mensagem)) {
+            $errors['mensagem'] = 'A mensagem contém conteúdo não permitido.';
         }
 
         return [
@@ -113,7 +147,53 @@ class HomeController extends BaseController
         ];
     }
 
-    protected function SetUpPHPMailer(): PHPMailer {
+    protected function HasBlockedContent(string $assunto, string $mensagem): bool
+    {
+        $blockedTerms = [
+            'casino',
+            'bet',
+            'viagra',
+            'porn',
+            'btc',
+            'criptomoeda',
+            'renda extra',
+            'ganhe dinheiro',
+            'tráfego pago',
+            'backlink',
+            'seo garantido',
+            'telegram',
+            'whatsapp group',
+            'emagrecimento',
+            'loan',
+            'base64_',
+            '<?php',
+            'shell_',
+            'exec(',
+            'wget ',
+            'curl ',
+            'onerror=',
+            '<script',
+            'http://',
+            'https://'
+        ];
+
+        $content = mb_strtolower($assunto . ' ' . $mensagem);
+
+        foreach ($blockedTerms as $term) {
+            if (str_contains($content, mb_strtolower($term))) {
+                return true;
+            }
+        }
+
+        if (preg_match_all('/https?:\/\//i', $mensagem) >= 2) {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function SetUpPHPMailer(): PHPMailer
+    {
         $mail = new PHPMailer(true);
         $mail->setLanguage('pt_br');
 
@@ -134,7 +214,8 @@ class HomeController extends BaseController
     /**
      * @throws \Exception
      */
-    protected function LogEmail(object $inputs, bool $isSpam): void {
+    protected function LogEmail(object $inputs, bool $isSpam): void
+    {
         $csvPath = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'storage' . DIRECTORY_SEPARATOR . 'emails.csv';
 
         if (file_exists($csvPath) === false) {
@@ -171,7 +252,8 @@ class HomeController extends BaseController
     /**
      * @throws GuzzleException
      */
-    protected function AkismetSpamClassifier(object $inputs): bool {
+    protected function AkismetSpamClassifier(object $inputs): bool
+    {
         $aksimetRequestBody = [
             'api_key' => $_ENV['AKISMET_API_KEY'],
             'blog' => $_ENV['APP_URL'],
@@ -208,7 +290,8 @@ class HomeController extends BaseController
      * @throws RuntimeError
      * @throws LoaderError
      */
-    protected function SendEmail(object $inputs): bool {
+    protected function SendEmail(object $inputs): bool
+    {
         $mail = $this->SetUpPHPMailer();
 
         $mail->Subject = $inputs->assunto;
