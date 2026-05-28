@@ -17,3 +17,5 @@ Para este projeto eu trabalhei como colaborador programador de jogos da Garoa St
 
 ## Tecnologias
 Como um diferencial dos minijogos sejam que funcionem bem no navegador, foi decidido usar um solução própria para o navegador, dessa forma usamos Phaser 3, um framework de desenvolvimento jogos HTML5.
+
+{{< video src="/videos/demonstracao-minijogos-educativos.mp4">}}

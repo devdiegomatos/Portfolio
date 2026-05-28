@@ -36,3 +36,5 @@ Testes, testes e mais teste: Apesar de eu não seguir a risca o TDD (Test Driven
 - A parte de consentimento de usuário para os cookies não foi bem intuitiva.
 - Gerenciamento das telas de portais dependendo do cargo do usuário: aluno, professor, administrador...
 - SEO e montar as campanhas pagas.
+
+{{< video src="/videos/demonstracao-preparavestibular.mp4">}}

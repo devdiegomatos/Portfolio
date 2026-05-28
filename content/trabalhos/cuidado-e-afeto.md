@@ -36,3 +36,5 @@ Os diagramas UML foram feitos usando draw.io, o banco de dados usado é o MariaD
 1. Como único do desenvolvedor do projeto, foi muito trabalhoso gerenciar repositórios diferentes com tecnologias tão distintas, um sistema que roda no lado do cliente em React e um backend em php.
 1. O dashboard de gerenciamento do administrador tomou muito mais tempo de execução do que o previsto, principalmente para implantação dos token JWT para autenticação.
 1. O componente para selecionar a data nas telas de exibir os profissionais disponíveis e dentro do perfil do profissional (onde mostra os horários disponíveis do profissional), foi surpreendemente mais difícil que imaginado.
+
+{{< video src="/videos/demonstracao-cuidado-e-afeto.mp4">}}

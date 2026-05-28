@@ -5,11 +5,10 @@ theme: PaperMod
 
 params:
   # env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: ExampleSite
-  description: "ExampleSite description"
+  title: Desenvolvedor Diego Matos
+  description: "Página principal do desenvolvedor Diego Matos, veja seus projetos, entre em contato, baixe seu curriculum ou olhe o código desse site em sua página do GitHub."
   keywords: [Blog, Portfolio, PaperMod]
   author: Diego Matos
-  # author: ["Me", "You"] # multiple authors
   # images: ["<link or path of image for opengraph, twitter-cards>"]
 
   ShowReadingTime: true
@@ -26,21 +25,16 @@ params:
 
   socialIcons:
     - name: linkedin
-      url: "https://x.com/"
+      url: "https://www.linkedin.com/in/devdiegomatos"
     - name: github
       url: "https://github.com/devdiegomatos"
   
-  # params:
-  #   fuseOpts:
-  #     isCaseSensitive: false
-  #     shouldSort: true
-  #     location: 0
-  #     distance: 1000
-  #     threshold: 0.4
-  #     minMatchCharLength: 0
-  #     # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-  #     keys: ["title", "permalink", "summary", "content"]
-
+  assets:
+    favicon: "/favicon/favicon.ico"
+    favicon16x16: "/favicon/favicon-16x16.png"
+    favicon32x32: "/favicon/favicon-32x32.png"
+    apple_touch_icon: "/favicon/favicon-32x32.png" # Opcional
+  
 menus:
   main:
   - name: Projetos

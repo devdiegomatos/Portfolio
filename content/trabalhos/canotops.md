@@ -47,3 +47,5 @@ Atuei como desenvolvedor full stack criando um plugin WordPress personalizado ca
 - Gerar arquivos vetoriais precisos e tecnicamente utilizáveis pela produção.
 - Controle de cache e carregamento rápido dos assets 3D e texturas.
 - Evitar perdas de customização durante navegação entre páginas.
+
+{{< video src="/videos/canotops-apresentacao.mp4">}}

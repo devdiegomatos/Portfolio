@@ -35,3 +35,5 @@ Fui responsável pelo desenvolvimento completo de Conquisterra Roguelie, um jogo
 1. Ajustar o balanceamento entre risco e recompensa ao longo das runs
 1. Gerenciar o escopo do projeto sendo um desenvolvimento solo, evitando feature creep
 1. Polir a experiência final garantindo consistência visual, mecânicas claras e feedback ao jogador
+
+{{< video src="/videos/conquisterra-roguelie-demo-v1.mp4">}}

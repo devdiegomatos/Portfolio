@@ -21,3 +21,5 @@ A PROMEC - Applied Modeling and Data Science, é uma empresa localizada no Parqu
 - Breve contato com computação gráfica 3D na web usando Paraview e Python.
 
 Obs: Nem todos os projetos possuem vídeo.
+
+{{< video src="/videos/demonstracao-promec.mp4">}}

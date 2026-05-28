@@ -31,3 +31,5 @@ Projeto chegou a mim pelo 99freelas.
 1. Sistema de leitura e escrita do progresso do jogador
 1. Sistema de upgrades e de skins.
 1. Garantir que o jogo esteja dentro da visão do cliente.
+
+{{< video src="/videos/elliots-great-symphony-v1.mp4">}}
