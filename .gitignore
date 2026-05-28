@@ -1,0 +1,15 @@
+# Generated files by hugo
+public/
+resources/_gen/
+assets/jsconfig.json
+hugo_stats.json
+
+# Temporary lock file while building
+.hugo_build.lock
+
+# OS-specific files (optional but recommended)
+.DS_Store
+Thumbs.db
+
+# Frontend dependencies (if using npm/yarn)
+node_modules/
