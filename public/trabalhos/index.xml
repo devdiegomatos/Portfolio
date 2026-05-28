@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Trabalhos on Desenvolvedor Diego Matos</title>
+    <link>http://localhost:1313/trabalhos/</link>
+    <description>Recent content in Trabalhos on Desenvolvedor Diego Matos</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 27 May 2026 21:50:22 -0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/trabalhos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Promec</title>
+      <link>http://localhost:1313/trabalhos/promec/</link>
+      <pubDate>Wed, 27 May 2026 21:50:22 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/promec/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;A PROMEC - Applied Modeling and Data Science, é uma empresa localizada no Parque Tecnologico da UFRJ, dentro do laboratório LAMCE onde também atua como Grupo de Mecanica Computacional. Durante meus 10 meses como estagiário trabalhei com projetos web com propósitos científicos.&lt;/p&gt;
+&lt;h2 id=&#34;responsabilidades&#34;&gt;Responsabilidades&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Desenvolvimento de aplicações em linguagens como: C++, Python, HTML/CSS e JavaScript;&lt;/li&gt;
+&lt;li&gt;Utilização de frameworks de backend e frontend;&lt;/li&gt;
+&lt;li&gt;Criação de Interfaces GUI avançadas, integrando tecnologias como Angular, Vue.js, e React para uma experiência visual aprimorada; construção de app desktop com Qt.&lt;/li&gt;
+&lt;li&gt;Análise de Desempenho e Perfilagem de códigos front-end e back-end, otimizando a eficiência das aplicações desenvolvidas&lt;/li&gt;
+&lt;li&gt;Desenvolvimento de aplicações para engenharia e ciência de dados, incorporando elementos de computação gráfica e visualização científica para uma experiência mais interativa e informativa.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;projetos-realizados&#34;&gt;Projetos realizados&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Ferramenta para visualização de dados geoespaciais usando Geotoolkit, Angular e Nodejs.&lt;/li&gt;
+&lt;li&gt;Um dashboard para configuração de parâmetros de um modelo de Aprendizado de Máquina para pedição de uma planta de óleo e gás com um visualizador simplificado da planta usando Vuejs e Python3.&lt;/li&gt;
+&lt;li&gt;Plot de gráfico de predição em tempo real usando sockets com plotly.js e python.&lt;/li&gt;
+&lt;li&gt;Breve contato com computação gráfica 3D na web usando Paraview e Python.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Obs: Nem todos os projetos possuem vídeo.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Minijogos Educativos</title>
+      <link>http://localhost:1313/trabalhos/minijogos-educativos/</link>
+      <pubDate>Wed, 27 May 2026 21:50:16 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/minijogos-educativos/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Este projeto é composto por 16 jogos para o navegador com público alvo para crianças e foi encomendado por uma escola em São Paulo. O trabalho chegou a mim por indicação em um dos canais internos da GDP.&lt;/p&gt;
+&lt;h2 id=&#34;responsabilidades&#34;&gt;Responsabilidades&lt;/h2&gt;
+&lt;p&gt;Para este projeto eu trabalhei como colaborador programador de jogos da Garoa Studios, participei das reuniões com o cliente e nas tomadas de decisão em relação a tecnologias usada no projeto.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Elliots Great Symphony</title>
+      <link>http://localhost:1313/trabalhos/elliots-great-symphony/</link>
+      <pubDate>Wed, 27 May 2026 21:50:09 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/elliots-great-symphony/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Elliots Great Symphony é um jogo musical estilo Guitar Hero com elementos de roguelike sobre um músico que foi convocado por uma agência de detetives para desvendar o segredo de um texto escrito por instrumentos musicais de outro mundo.&lt;/p&gt;
+&lt;p&gt;Projeto foi desenvolvido na Unity com uma loja de upgrades, loja de skins, 2 fases de aproximadamente 20 minutos, algumas cutscenes e diálogos simples,&lt;/p&gt;
+&lt;p&gt;Projeto chegou a mim pelo 99freelas.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cuidado E Afeto</title>
+      <link>http://localhost:1313/trabalhos/cuidado-e-afeto/</link>
+      <pubDate>Wed, 27 May 2026 21:49:54 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/cuidado-e-afeto/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Desenvolver um site cujo objetivo será reunir profissionais qualificados de enfermagem e cuidadores pessoais onde os clientes irão acessar o site, acessar o catálogo de profissionais e selecionar um profissional disponível para atender um paciente.&lt;/p&gt;
+&lt;p&gt;Cada consulta conterá informação de: quem é o cliente solicitante, o paciente, quem é o profissional, a data e hora da consulta, a jornada de trabalho, o número da consulta, valor da consulta, forma de pagamento.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Conquisterra Roguelie</title>
+      <link>http://localhost:1313/trabalhos/conquisterra-roguelie/</link>
+      <pubDate>Wed, 27 May 2026 21:49:09 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/conquisterra-roguelie/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Fui responsável pelo desenvolvimento completo de Conquisterra Roguelie, um jogo indie 2D de plataforma criado na Godot Engine, combinando ação rápida com progressão roguelite inspirada em Dead Cells. Implementei sistemas centrais como progressão de habilidades diálogo interativo, loja de upgrades, IA de chefões com padrões dinâmicos de ataque e shaders personalizados para efeitos visuais básicos (VFX). O foco do projeto foi criar gameplay responsivo, loop de progressão envolvente e desafios gerados de forma randômica, garantindo variedade e rejogabilidade.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Canotops</title>
+      <link>http://localhost:1313/trabalhos/canotops/</link>
+      <pubDate>Wed, 27 May 2026 21:48:56 -0300</pubDate>
+      <guid>http://localhost:1313/trabalhos/canotops/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;Atuei como desenvolvedor full stack criando um plugin WordPress personalizado capaz de substituir a página de produto do WooCommerce por um configurador 3D avançado construído em Three.js. O sistema permite ao usuário alterar cores, materiais, textos, estampas e outros atributos visuais, tudo renderizado em tempo real diretamente no navegador. Além da parte visual, implementei uma camada de automação que gera automaticamente mockups e arquivos vetoriais para o setor de produção, reduzindo o tempo entre o pedido e a fabricação. Toda a customização feita pelo cliente é salva e integrada ao fluxo padrão do WooCommerce, incluindo carrinho, checkout e histórico de pedidos.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

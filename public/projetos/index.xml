@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Projetos on Desenvolvedor Diego Matos</title>
+    <link>http://localhost:1313/projetos/</link>
+    <description>Recent content in Projetos on Desenvolvedor Diego Matos</description>
+    <generator>Hugo</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 27 May 2026 21:48:29 -0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/projetos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Prepara Vestibular</title>
+      <link>http://localhost:1313/projetos/prepara-vestibular/</link>
+      <pubDate>Wed, 27 May 2026 21:48:29 -0300</pubDate>
+      <guid>http://localhost:1313/projetos/prepara-vestibular/</guid>
+      <description>&lt;h2 id=&#34;introdução&#34;&gt;Introdução&lt;/h2&gt;
+&lt;p&gt;O Projeto Prepara Vestibular é um projeto web full-stack de minha propriedade que ainda está em desenvolvimento.&lt;/p&gt;
+&lt;p&gt;Com o objetivo de prover soluções digitais para alunos estudarem por meio de questões, simulados, pesquisarem matérias e tirar dúvidas com professores. Além de também trazer praticidade para professores na hora de montar suas provas, lista de exercícios e gerar uma fonte de renda extra tirando dúvidas de alunos.&lt;/p&gt;
+&lt;h2 id=&#34;responsabilidades&#34;&gt;Responsabilidades&lt;/h2&gt;
+&lt;p&gt;Como o projeto é uma iniciativa minha, fui responsável pela parte de programação do site, modelar o sistema, projetar o banco de dados, configurar o servidor, coordenar os profissionais (contratados) de designer e de marketing digital de acordo com os ideias do projeto.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,3 +1,60 @@
 baseURL: https://www.devdiegomatos.com.br/
 locale: pt-br
 title: Desenvolvedor Diego Matos
+theme: PaperMod
+
+params:
+  # env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: ExampleSite
+  description: "ExampleSite description"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: Diego Matos
+  # author: ["Me", "You"] # multiple authors
+  # images: ["<link or path of image for opengraph, twitter-cards>"]
+
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  showtoc: true
+
+  # home-info mode
+  homeInfoParams:
+    Title: "Oi \U0001F44B"
+    Content: Welcome to my blog
+
+  socialIcons:
+    - name: linkedin
+      url: "https://x.com/"
+    - name: github
+      url: "https://github.com/devdiegomatos"
+  
+  # params:
+  #   fuseOpts:
+  #     isCaseSensitive: false
+  #     shouldSort: true
+  #     location: 0
+  #     distance: 1000
+  #     threshold: 0.4
+  #     minMatchCharLength: 0
+  #     # limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+  #     keys: ["title", "permalink", "summary", "content"]
+
+menus:
+  main:
+  - name: Projetos
+    pageRef: /projetos/
+    weight: 10
+  - name: Trabalhos
+    pageRef: /trabalhos/
+    weight: 20
+  - name: Pesquisar
+    pageRef: /search/
+    weight: 30
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
