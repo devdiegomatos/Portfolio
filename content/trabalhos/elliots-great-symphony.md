@@ -8,6 +8,14 @@ cover:
   alt: "Projeto Elliots Great Symphony"
 ---
 
+Fui responsável por programar um jogo musical na Unity estilo Guitar Hero com elementos de roguelike.
+
+Seu objetivo é completar a fase principal acertando as notas douradas, evitando as notas bombas e coletando dinheiro e pontos de habilidade durante a fase. Se errar a nota dourada você perde vida até gameover.
+
+Durante a fase você terá a chance de coletar notas de upgrades que derão poderes para te ajudar a completar a fase.
+
+<!-- more -->
+
 ## Introdução
 Elliots Great Symphony é um jogo musical estilo Guitar Hero com elementos de roguelike sobre um músico que foi convocado por uma agência de detetives para desvendar o segredo de um texto escrito por instrumentos musicais de outro mundo.
 

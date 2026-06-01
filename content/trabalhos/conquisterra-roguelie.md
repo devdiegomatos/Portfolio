@@ -4,6 +4,10 @@ draft: true
 title: 'Conquisterra Roguelie'
 ---
 
+Desenvolvi um jogo indie 2D de plataforma feito na Godot Engine que mistura ação rápida com progressão roguelite no estilo Dead Cells. A ideia principal do projeto foi entregar um gameplay bem responsivo, com um loop de progressão viciante e desafios gerados de forma randômica, garantindo variedade e muita rejogabilidade a cada run. [Jogue agora.](https://ruisu-design.itch.io/conquisterra-roguelie)
+
+<!-- more -->
+
 ## Introdução
 Fui responsável pelo desenvolvimento completo de Conquisterra Roguelie, um jogo indie 2D de plataforma criado na Godot Engine, combinando ação rápida com progressão roguelite inspirada em Dead Cells. Implementei sistemas centrais como progressão de habilidades diálogo interativo, loja de upgrades, IA de chefões com padrões dinâmicos de ataque e shaders personalizados para efeitos visuais básicos (VFX). O foco do projeto foi criar gameplay responsivo, loop de progressão envolvente e desafios gerados de forma randômica, garantindo variedade e rejogabilidade.
 

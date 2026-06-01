@@ -9,6 +9,10 @@ cover:
   caption: "Configurador de Tendas 3D"
 ---
 
+Desenvolvi um plugin WordPress + WooCommerce integrado a um configurador 3D em Three.js, permitindo que clientes personalizassem tendas em tempo real e finalizassem a compra com todos os dados técnicos e visuais gerados automaticamente. [Teste agora!](https://www.canotops.com/product/full-custom/)
+
+<!-- more -->
+
 ## Introdução
 Atuei como desenvolvedor full stack criando um plugin WordPress personalizado capaz de substituir a página de produto do WooCommerce por um configurador 3D avançado construído em Three.js. O sistema permite ao usuário alterar cores, materiais, textos, estampas e outros atributos visuais, tudo renderizado em tempo real diretamente no navegador. Além da parte visual, implementei uma camada de automação que gera automaticamente mockups e arquivos vetoriais para o setor de produção, reduzindo o tempo entre o pedido e a fabricação. Toda a customização feita pelo cliente é salva e integrada ao fluxo padrão do WooCommerce, incluindo carrinho, checkout e histórico de pedidos.
 

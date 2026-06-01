@@ -9,6 +9,10 @@ cover:
   caption: "Imagem Jogo dos Gestos"
 ---
 
+Coletânea de minijogos educativos encomendados por uma escola. A temática dos jogos foi construída através da ajuda dos professores, [jogue agora!](https://diegomatos321.github.io/escola-mozilla-verso/)
+
+<!-- more -->
+
 ## Introdução
 Este projeto é composto por 16 jogos para o navegador com público alvo para crianças e foi encomendado por uma escola em São Paulo. O trabalho chegou a mim por indicação em um dos canais internos da GDP.
 

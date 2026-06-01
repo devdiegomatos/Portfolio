@@ -2,6 +2,7 @@
 date: '2026-05-27T21:48:29-03:00'
 draft: true
 title: 'Prepara Vestibular'
+weight: 10
 
 cover:
   image: "prepara-vestibular.png"
@@ -9,8 +10,12 @@ cover:
   caption: "Homepage Prepara Vestibular"
 ---
 
+Plataforma gratuita de resolução de questões para o vestibular, treine com simulados ou através do banco de questões com gabarito. Uma nova alternativa para ajudar os estudantes do País inteiro a se prepararem para as provas. [Acesse já!](https://www.preparavestibular.com.br)
+
+<!-- more -->
+
 ## Introdução
-O Projeto Prepara Vestibular é um projeto web full-stack de minha propriedade que ainda está em desenvolvimento.
+O Projeto [Prepara Vestibular](https://www.preparavestibular.com.br) é um projeto web full-stack de minha propriedade que ainda está em desenvolvimento.
 
 Com o objetivo de prover soluções digitais para alunos estudarem por meio de questões, simulados, pesquisarem matérias e tirar dúvidas com professores. Além de também trazer praticidade para professores na hora de montar suas provas, lista de exercícios e gerar uma fonte de renda extra tirando dúvidas de alunos.
 

@@ -8,6 +8,10 @@ cover:
   alt: "Projeto Cuidado e Afeto"
 ---
 
+Plataforma para marcar consulta com profissionais de Enfermagem e Cuidadores Pessoais no Rio de Janeiro.
+
+<!-- more -->
+
 ## Introdução
 Desenvolver um site cujo objetivo será reunir profissionais qualificados de enfermagem e cuidadores pessoais onde os clientes irão acessar o site, acessar o catálogo de profissionais e selecionar um profissional disponível para atender um paciente.
 

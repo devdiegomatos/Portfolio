@@ -4,7 +4,6 @@ title: Desenvolvedor Diego Matos
 theme: PaperMod
 
 params:
-  # env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: Desenvolvedor Diego Matos
   description: "Página principal do desenvolvedor Diego Matos, veja seus projetos, entre em contato, baixe seu curriculum ou olhe o código desse site em sua página do GitHub."
   keywords: [Blog, Portfolio, PaperMod]
@@ -18,12 +17,20 @@ params:
   ShowCodeCopyButtons: true
   showtoc: true
 
+  mainSections: ["trabalhos", "projetos"]
+
   # home-info mode
   homeInfoParams:
     Title: "Oi \U0001F44B"
     Content: Welcome to my blog
+  
+  label:
+    icon: "/marca/logo-horizontal-light.png"
+    iconHeight: 40
 
   socialIcons:
+    - name: email
+      url: "mailto:diego@devdiegomatos.com.br"
     - name: linkedin
       url: "https://www.linkedin.com/in/devdiegomatos"
     - name: github
@@ -43,9 +50,12 @@ menus:
   - name: Trabalhos
     pageRef: /trabalhos/
     weight: 20
+  - name: Archives
+    pageRef: /archives/
+    weight: 30
   - name: Pesquisar
     pageRef: /search/
-    weight: 30
+    weight: 40
 
 outputs:
   home:
