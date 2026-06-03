@@ -2,10 +2,6 @@
 date: '2026-05-27T21:49:54-03:00'
 draft: true
 title: 'Cuidado E Afeto'
-
-cover:
-  image: "cuidado-e-afeto.jpg"
-  alt: "Projeto Cuidado e Afeto"
 ---
 
 Plataforma para marcar consulta com profissionais de Enfermagem e Cuidadores Pessoais no Rio de Janeiro.

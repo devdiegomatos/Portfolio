@@ -21,12 +21,11 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Oi \U0001F44B"
-    Content: Welcome to my blog
-  
-  label:
-    icon: "/marca/logo-horizontal-light.png"
-    iconHeight: 40
+    Title: "Oi, eu sou Diego Matos 👋"
+    Content: >-
+      Sou desenvolvedor e uso este espaço para reunir meus trabalhos, projetos e,
+      em breve, artigos sobre programação, tecnologia e aprendizado contínuo.
+      Fique à vontade para explorar o que já construí e acompanhar a evolução deste portfólio.
 
   socialIcons:
     - name: email
@@ -44,11 +43,11 @@ params:
   
 menus:
   main:
-  - name: Projetos
-    pageRef: /projetos/
-    weight: 10
   - name: Trabalhos
     pageRef: /trabalhos/
+    weight: 10
+  - name: Projetos
+    pageRef: /projetos/
     weight: 20
   - name: Archives
     pageRef: /archives/

@@ -2,11 +2,6 @@
 date: '2026-05-27T21:50:16-03:00'
 draft: true
 title: 'Minijogos Educativos'
-
-cover:
-  image: "minijogos-educativos.jpg"
-  alt: "Projeto Minijogos Educativos"
-  caption: "Imagem Jogo dos Gestos"
 ---
 
 Coletânea de minijogos educativos encomendados por uma escola. A temática dos jogos foi construída através da ajuda dos professores, [jogue agora!](https://diegomatos321.github.io/escola-mozilla-verso/)
