@@ -4,6 +4,7 @@ title: Desenvolvedor Diego Matos
 theme: PaperMod
 
 params:
+  env: production
   title: Desenvolvedor Diego Matos
   description: "Página principal do desenvolvedor Diego Matos, veja seus projetos, entre em contato, baixe seu curriculum ou olhe o código desse site em sua página do GitHub."
   keywords: [Blog, Portfolio, PaperMod]

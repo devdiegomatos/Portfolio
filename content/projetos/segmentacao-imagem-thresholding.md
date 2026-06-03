@@ -1,6 +1,6 @@
 ---
 date: '2026-06-01T16:05:36-03:00'
-draft: true
+draft: false
 title: 'Segmentacao de Imagem por Thresholding'
 ---
 

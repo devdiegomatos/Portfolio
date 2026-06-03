@@ -1,6 +1,6 @@
 ---
 date: '2026-05-27T21:50:09-03:00'
-draft: true
+draft: false
 title: 'Elliots Great Symphony'
 
 cover:

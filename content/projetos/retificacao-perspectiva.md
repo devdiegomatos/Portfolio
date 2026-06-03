@@ -1,6 +1,6 @@
 ---
 date: '2026-06-01T16:05:57-03:00'
-draft: true
+draft: false
 title: 'Retificação de Perspecctiva'
 ---
 

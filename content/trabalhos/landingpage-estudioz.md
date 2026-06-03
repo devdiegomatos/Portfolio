@@ -1,6 +1,6 @@
 ---
 date: '2026-05-27T20:00:37-03:00'
-draft: true
+draft: false
 title: 'Landingpage Estudioz'
 ---
 

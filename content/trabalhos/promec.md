@@ -1,6 +1,6 @@
 ---
 date: '2026-05-27T21:50:22-03:00'
-draft: true
+draft: false
 title: 'Promec'
 ---
 
