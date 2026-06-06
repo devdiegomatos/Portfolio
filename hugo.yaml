@@ -3,8 +3,10 @@ locale: pt-br
 title: Desenvolvedor Diego Matos
 theme: PaperMod
 
+enableRobotsTXT: true
+mainSections: ["trabalhos", "projetos"]
+
 params:
-  env: production
   title: Desenvolvedor Diego Matos
   description: "Página principal do desenvolvedor Diego Matos, veja seus projetos, entre em contato, baixe seu curriculum ou olhe o código desse site em sua página do GitHub."
   keywords: [Blog, Portfolio, PaperMod]
@@ -17,8 +19,6 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   showtoc: true
-
-  mainSections: ["trabalhos", "projetos"]
 
   # home-info mode
   homeInfoParams:
@@ -62,3 +62,7 @@ outputs:
     - HTML
     - RSS
     - JSON # necessary for search
+
+services:
+  googleAnalytics:
+    id: G-BZ5BDBE9NH # Substitua pelo seu ID do Google Analytics
