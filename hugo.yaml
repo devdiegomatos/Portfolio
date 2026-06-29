@@ -4,7 +4,7 @@ title: Desenvolvedor Diego Matos
 theme: PaperMod
 
 enableRobotsTXT: true
-mainSections: ["trabalhos", "projetos"]
+mainSections: ["posts", "trabalhos", "projetos"]
 
 params:
   title: Desenvolvedor Diego Matos
