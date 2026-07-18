@@ -1,69 +1,170 @@
 ---
-date: '2026-06-28T16:43:29-03:00'
-draft: true
-title: ''
+date: '2026-07-18T11:30:00-03:00'
+draft: false
+title: 'Teste de ponto em polígono usando o algoritmo do Número de Voltas'
 math: true
+cover:
+  image: "cover.webp"
+  alt: "Vector illustration for cover"
 ---
 
-Recentemente comecei a trabalhar na Tecgraf Puc-Rio e precisei resolver um problema interessante: dado um polígono qualquer deseja-se selecionar todos os objetos que estão contidos (inteiramente ou parcialmente) em seu interior. Como fazer isso?
+Recentemente comecei a trabalhar na Tecgraf PUC-Rio e precisei resolver um problema interessante: dado um polígono desenhado pelo usuário, o sistema deve selecionar todos os objetos contidos, total ou parcialmente, em seu interior.
 
 <!-- more -->
 
 ## Introdução
-Este é um problema geométrico interessante e não me parece muito diferente de determinar se dois objetos estão se intersectando. Como o sistema trabalha num domínio 2D, me parece bem adequado usar o teorema do eixo separador (SAT). Porém, o polígono é genérico, pode ser concavo ou convexo, já o SAT funciona muito bem apenas para polígonos convexos e creio que terá problema para objetos que estejam inteiramente contidos no polígono, que é o caso mais comum. Logo, esta solução exigiria um passo anterior para decompor o polígono em regiões convexas menores usando algoritmos como *Ear Clipping*.
 
-Usar um algoritmo de decomposição me parece muito exagerado para o meu caso. Pesquisando um pouco mais encontrei que determinar se um dos vértices do objeto está contido no polígono seria suficiente para dizer se o objeto intersecta o polígono. O que faz todo sentido, podemos pensar em 4 configurações possíveis que dois objetos podem ter:
+À primeira vista esse problema parece apenas mais um teste de interseção entre polígonos. Como o sistema trabalha em 2 dimensões a minha primeira ideia foi utilizar o Teorema do Eixo Separador (SAT).
 
-1. Vértice-Vértice: este é um caso raro e não estamos muito interessado nele. O vértice do objeto precisa estar exatamente em cima do polígono. Sensível a representação numérica e aos objetos estarem perfeitamente alinhados;
-1. Vértice-Aresta: já seria um caso comum e queremos detectar;
-1. Aresta-Aresta: outro caso raro que também não estamos interessado, também sensível a representação numérica e aos objetos estarem perfeitamente alinhados;
-1. Inteiramente contido: no nosso contexto esse seria o caso mais comum e queremos detectar;
+Entretanto, o polígono de seleção pode possuir qualquer formato, sendo convexo ou côncavo. O SAT, por outro lado, pressupõe que ambos os polígonos sejam convexos. Para utilizá-lo seria necessário decompor previamente o polígono de seleção em um conjunto de polígonos convexos menores, utilizando algoritmos como *Ear Clipping*, e somente então executar os testes de interseção.
 
-Para os casos que estamos interessados basta que um vértice esteja contido para considerarmos o objeto como selecionado. Dessa forma, reduzimos para um problema de testar ponto-no-polígono, ou seja, para cada vértice basta testarmos se ele está contido no polígono.
+Embora essa abordagem seja perfeitamente válida, ela me pareceu desnecessariamente complexa para o problema que eu precisava resolver.
 
-## Problema Ponto-no-Polígono
-É um problema geométrico fundamental em geometria computacional determinar se um ponto está no interior, exterior ou na fronteira de um polígono 2D. Dois métodos populares para resolver esse problema se baseiam em:
+No meu caso, seria suficiente determinar se um dos vértices de cada objeto estava contido no polígono de seleção. Sorte a minha que esse problema já estava resolvido dentro da aplicação pois, é isso que se faz para determinar se o clique do mouse havia selecionado o polígono. 
 
-* Número de Cruzamento: conta o número de vezes que um raio cruza as arestas do polígono;
-* Número de Voltas: conta o número de voltas que um polígono faz ao redor de um ponto;
+Dessa forma, o problema pode ser reduzido a um problema clássico da Geometria Computacional: determinar se um ponto pertence ao interior de um polígono. Ainda assim, como essa função funciona?
 
-Neste texto irei escrever sobre um algoritmo que usa o número de voltas.
+## O problema Ponto-no-Polígono
 
-## Algoritmo do número de voltas para teste de ponto em polígono
-Seja um ponto *Q* qualquer que desejasse testar, um polígono P representado por seus vértices ordenados, no sentido anti-horário, e wn o número de voltas, *Dan Sunday* descreve um algoritmo que traça um raio horizontal *R*, virtual, a partir de *Q*, e toda vez que o raio cruza uma aresta de baixo para cima, wn é incrementado, caso contrário, decrementado. Veja uma ilustração na Figura 1.
+O problema de determinar se um ponto está contido em um polígono, aparece em diversas áreas da computação gráfica, motores de física, sistemas de informação geográfica (GIS), CAD e visão computacional.
+
+Seja um polígono fechado P e um ponto \\(q \in \mathbb{R}^2\\). Nosso objetivo é classificar *q* em uma das seguintes regiões:
+
+* interior do polígono;
+* fronteira do polígono;
+* exterior do polígono.
+
+Existem diversos algoritmos para resolvê-lo. Os mais conhecidos são:
+
+* Número de Cruzamentos: conta quantas vezes uma semirreta lançada a partir do ponto cruza o contorno do polígono;
+* Número de Voltas: contabiliza quantas vezes o contorno do polígono envolve o ponto.
+
+Walaber usa um algoritmo de traçado de raios (conta o número de cruzamentos) em seu sistema de detecção de colisão em seu jogo JellyCar. Neste texto apresentarei um algoritmo baseado no Número de Voltas, proposto por Dan Sunday, por ser simples de implementar, eficiente e adequado ao meu problema.
+
+## Algoritmo do Número de Voltas
+
+Considere um ponto *q* qualquer e um polígono P representado por seus vértices ordenados \\(P={v_0,v_1,\ldots,v_{n-1}}\\), onde \\(v_n=v_0\\), de forma que cada par consecutivo de vértices define uma aresta do polígono.
+
+A ideia do algoritmo é bastante simples. Traça-se uma semirreta horizontal partindo do ponto *q* para a direita. Em seguida percorremos todas as arestas do polígono, observando como elas cruzam essa semirreta.
+
+Sempre que uma aresta cruza a semirreta de baixo para cima, contabilizamos uma contribuição positiva. Quando a aresta cruza de cima para baixo, contabilizamos uma contribuição negativa.
+A Figura 1 ilustra esse processo.
 
 {{<rawhtml>}}
-    <figure>
-        <img src="./Winding_number_algorithm_example.svg" alt="Description" style="background-color: white; display: block; margin: auto">
-        <figcaption style="text-align: center">Figure 1: Visualização do algoritmo de números voltas de Dan Sunday. Fonte: Wikepedia, Avelludo</figcaption>
-    </figure>
+
+<figure>
+    <img src="./Winding_number_algorithm_example.svg" alt="Exemplo do algoritmo Winding Number" style="background-color: white; display: block; margin: auto">
+    <figcaption style="text-align:center">
+        Figura 1 – Funcionamento do algoritmo do Número de Voltas. Fonte: Adaptado de Avelludo (Wikimedia Commons).
+    </figcaption>
+</figure>
 {{</rawhtml>}}
 
-Isso funciona pois ao caminhar pelas arestas de *P* a região à esquerda da aresta é o interior do polígono, e a região à direita o exterior, então se cruzarmos o raio de baixo para cima significa que o ponto **pode** estar no interior, se passarmos de cima para baixo **pode** estar no exterior. Estamos considerando um polígono fechado, caso o ponto esteja do lado de fora é preciso que ele cruze com um aresta subindo e outra descendo, assim elas se cancelam. Dessa forma, caso \\( wn \neq 0 \\) o ponto está no interior, caso contrário, no lado de fora. 
+A intuição por trás do algoritmo é que, se o ponto estiver fora do polígono, toda vez que uma aresta entrar na região à direita da semirreta haverá outra aresta saindo dessa região. Assim, as contribuições positivas e negativas se cancelam, produzindo \\(wn = 0\\). Por outro lado, quando o ponto está no interior do polígono, esse cancelamento não ocorre completamente e o número de voltas permanece diferente de zero. Portanto,
 
-Testar a intersecção entre raio e aresta não é necessária, basta testarmos se o ponto *Q* está à esquerda da aresta. Isso pode ser feito de algumas formas: usando produto interno, produto cruzado, ...  Veja o Algoritmo 1.
+* (wn = 0): o ponto está no exterior do polígono;
+* (wn = 1): o polígono envolve o ponto uma vez no sentido anti-horário;
+* (wn = -1): o polígono envolve o ponto uma vez no sentido horário;
+* (|wn| > 1): o contorno envolve o ponto múltiplas vezes (caso possível em polígonos auto-intersectantes).
 
-```pseudocode 
+O algoritmo pode ser implementado da seguinte forma:
 
-function wnPoly (Q, P)
+```pseudocode
+function windingNumber(Q, P)
     wn = 0
-
     para cada aresta E de P
-        se aresta cruza da baixo para cima
-            se Q está a esquerda da aresta E
-                wn += 1
-        senao aresta cruza de cima para baixo
-            se Q está a esquerda da aresta E
-                wn -= 1
-    
+        se E cruza a semirreta de baixo para cima
+            se Q está à esquerda de E
+                wn++
+        senão se E cruza a semirreta de cima para baixo
+            se Q está à esquerda de E
+                wn--
     return wn
 ```
 
-A complexidade é na ordem de O(n), onde n é o número de vértices do polígono. Como no meu caso o número de vértices do polígonos é bem controlado, raro ter polígonos muito complexos, e sua simplicidade, transformam ele perfeito para resolver o problema.
+Como cada aresta é analisada exatamente uma vez, a complexidade do algoritmo é O(n), onde n é o número de vértices do polígono. No meu caso, o número de vértices do polígono de seleção costuma ser pequeno, tornando essa solução extremamente simples e suficientemente eficiente.
 
-## Otimizações
+## Teste de orientação
+
+Até agora omitimos um detalhe importante: como determinar se um ponto está à esquerda de uma aresta? Dan Sunday resolve esse problema utilizando um teste de orientação baseado no sinal do produto vetorial entre dois vetores. Dessa forma evitando um teste explícito de interseção entre a semirreta e a aresta. 
+
+Considere uma aresta representado pelo vetor \\( \vec s = \vec{v_{i+1}} - \vec{v_i} \\) e o vetor \\( \vec r = q - v_i \\).
+
+```goat{width="200px" height="200px"}
+   *       * 
+    ^     ^
+  r  \   / s
+      \ / 
+       *
+```
+
+O sinal do determinante
+
+$$ \vec r \times \vec s = \begin{vmatrix} r_x & s_x \\\\ r_y & s_y \end{vmatrix} = r_xs_y-s_xr_y $$
+
+permite determinar a orientação relativa entre os vetores.
+
+* resultado positivo: o ponto está à esquerda da aresta;
+* resultado negativo: o ponto está à direita da aresta;
+* resultado igual a zero: o ponto é colinear com a aresta.
+
+{{<rawhtml>}}
+
+<iframe src="https://devdiegomatos.github.io/point-in-poly-winding-number-algorithm/" width="100%" height="400px"></iframe>
+
+{{</rawhtml>}}
+
+## Tratando casos de borda
+Uma dificuldade desse algoritmo ocorre quando a semirreta horizontal passa exatamente por um vértice do polígono.
+
+Nessa situação, duas arestas compartilham o mesmo ponto de interseção e uma implementação ingênua pode contabilizar esse cruzamento duas vezes. Alciatore e Miranda propõem tratar esses casos atribuindo meia contribuição \\(\pm\frac{1}{2}\\) aos vértices, evitando contagens duplicadas.
+
+```goat
+             * v{i+1}
+            ^
+           /
+q *---*---*----->    w = w + 1/2
+     ^
+    /
+   * vi
+
+
+             * v{i+1}
+            /
+           v
+q *---*---*----->    w = w - 1/2
+     /
+    v
+   * vi
+
+```
+
+Quando a semirreta passa exatamente por um vértice horizontal, nenhuma contribuição adicional deve ser contabilizada.
+
+```goat
+q *---*---*----->    
+```
+
+## Limitações
+Embora o teste de ponto em polígono seja suficiente para o problema encontrado na aplicação, ele não resolve o problema geral de interseção entre polígonos. Considere, por exemplo, a situação abaixo.
+
+```goat{width="200px"}
+
+  +-----+
++-+-----+-+
+|         |
++-+-----+-+
+  +-----+
+
+```
+
+Os dois polígonos se intersectam. Entretanto, nenhum vértice de um polígono pertence ao interior do outro. Assim, um algoritmo baseado exclusivamente em testes de ponto-no-polígono concluirá incorretamente que não existe interseção entre eles, produzindo um falso negativo. 
+
+No contexto deste trabalho essa limitação não representa um problema, pois as características dos objetos manipulados permitem reduzir o teste de interseção a testes de inclusão de pontos.
 
 ## Referências
 
-1. Sunday, D. Inclusion of a Point in a Polygon
-1. By Avelludo - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=108280585
+1. Sunday, D. *Inclusion of a Point in a Polygon*. SoftSurfer Geometry Algorithms.
+1. ALCIATORE, D.; MIRANDA, R. A winding number and point-in-polygon algorithm. Fort Collins: Department of Mechanical Engineering, Colorado State University, 1995.
+1. Avelludo. *Winding Number Algorithm Example*. Wikimedia Commons. https://commons.wikimedia.org/wiki/File:Winding_number_algorithm_example.svg
+1. *Physics of Jellycar*, por Walaber: https://youtu.be/3OmkehAJoyo?si=0Y1m1r2XhRRhg3Zs
