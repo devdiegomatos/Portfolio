@@ -50,6 +50,9 @@ menus:
   - name: Projetos
     pageRef: /projetos/
     weight: 20
+  - name: Posts
+    pageRef: /posts/
+    weight: 21
   - name: Archives
     pageRef: /archives/
     weight: 30
