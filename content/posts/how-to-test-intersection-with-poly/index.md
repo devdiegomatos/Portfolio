@@ -13,19 +13,17 @@ Recentemente comecei a trabalhar na Tecgraf PUC-Rio e precisei resolver um probl
 <!-- more -->
 
 ## Introdução
-
 À primeira vista esse problema parece apenas mais um teste de interseção entre polígonos. Como o sistema trabalha em 2 dimensões a minha primeira ideia foi utilizar o Teorema do Eixo Separador (SAT).
 
 Entretanto, o polígono de seleção pode possuir qualquer formato, sendo convexo ou côncavo. O SAT, por outro lado, pressupõe que ambos os polígonos sejam convexos. Para utilizá-lo seria necessário decompor previamente o polígono de seleção em um conjunto de polígonos convexos menores, utilizando algoritmos como *Ear Clipping*, e somente então executar os testes de interseção.
 
 Embora essa abordagem seja perfeitamente válida, ela me pareceu desnecessariamente complexa para o problema que eu precisava resolver.
 
-No meu caso, seria suficiente determinar se um dos vértices de cada objeto estava contido no polígono de seleção. Sorte a minha que esse problema já estava resolvido dentro da aplicação pois, é isso que se faz para determinar se o clique do mouse havia selecionado o polígono. 
+No meu caso, seria suficiente determinar se um dos vértices de cada objeto estava contido no polígono de seleção. Dessa forma, o problema pode ser reduzido a um problema clássico da Geometria Computacional: determinar se um ponto pertence ao interior de um polígono.
 
-Dessa forma, o problema pode ser reduzido a um problema clássico da Geometria Computacional: determinar se um ponto pertence ao interior de um polígono. Ainda assim, como essa função funciona?
+Sorte a minha que esse problema já estava resolvido dentro da aplicação pois, é isso que se faz para determinar se o clique do mouse havia selecionado o polígono. Ainda assim, como essa função funciona?
 
 ## O problema Ponto-no-Polígono
-
 O problema de determinar se um ponto está contido em um polígono, aparece em diversas áreas da computação gráfica, motores de física, sistemas de informação geográfica (GIS), CAD e visão computacional.
 
 Seja um polígono fechado P e um ponto \\(q \in \mathbb{R}^2\\). Nosso objetivo é classificar *q* em uma das seguintes regiões:
@@ -42,16 +40,13 @@ Existem diversos algoritmos para resolvê-lo. Os mais conhecidos são:
 Walaber usa um algoritmo de traçado de raios (conta o número de cruzamentos) em seu sistema de detecção de colisão em seu jogo JellyCar. Neste texto apresentarei um algoritmo baseado no Número de Voltas, proposto por Dan Sunday, por ser simples de implementar, eficiente e adequado ao meu problema.
 
 ## Algoritmo do Número de Voltas
-
-Considere um ponto *q* qualquer e um polígono P representado por seus vértices ordenados \\(P={v_0,v_1,\ldots,v_{n-1}}\\), onde \\(v_n=v_0\\), de forma que cada par consecutivo de vértices define uma aresta do polígono.
+Considere um ponto *q* qualquer, um polígono P representado por seus vértices ordenados \\(P={v_0,v_1,\ldots,v_{n-1}}\\), onde \\(v_n=v_0\\), de forma que cada par consecutivo de vértices define uma aresta do polígono e o número de voltas \\(wn)\\.
 
 A ideia do algoritmo é bastante simples. Traça-se uma semirreta horizontal partindo do ponto *q* para a direita. Em seguida percorremos todas as arestas do polígono, observando como elas cruzam essa semirreta.
 
-Sempre que uma aresta cruza a semirreta de baixo para cima, contabilizamos uma contribuição positiva. Quando a aresta cruza de cima para baixo, contabilizamos uma contribuição negativa.
-A Figura 1 ilustra esse processo.
+Sempre que uma aresta cruza a semirreta de baixo para cima, contabilizamos uma contribuição positiva. Quando a aresta cruza de cima para baixo, contabilizamos uma contribuição negativa. A Figura 1 ilustra esse processo.
 
 {{<rawhtml>}}
-
 <figure>
     <img src="./Winding_number_algorithm_example.svg" alt="Exemplo do algoritmo Winding Number" style="background-color: white; display: block; margin: auto">
     <figcaption style="text-align:center">
@@ -85,18 +80,18 @@ function windingNumber(Q, P)
 Como cada aresta é analisada exatamente uma vez, a complexidade do algoritmo é O(n), onde n é o número de vértices do polígono. No meu caso, o número de vértices do polígono de seleção costuma ser pequeno, tornando essa solução extremamente simples e suficientemente eficiente.
 
 ## Teste de orientação
-
 Até agora omitimos um detalhe importante: como determinar se um ponto está à esquerda de uma aresta? Dan Sunday resolve esse problema utilizando um teste de orientação baseado no sinal do produto vetorial entre dois vetores. Dessa forma evitando um teste explícito de interseção entre a semirreta e a aresta. 
 
-Considere uma aresta representado pelo vetor \\( \vec s = \vec{v_{i+1}} - \vec{v_i} \\) e o vetor \\( \vec r = q - v_i \\).
+Considere uma aresta representado pelo vetor \\( \vec s = \vec{v_{i+1}} - \vec{v_i} \\) e o vetor \\( \vec r = \vec q - \vec{v_i} \\).
 
-```goat{width="200px" height="200px"}
-   *       * 
-    ^     ^
-  r  \   / s
-      \ / 
-       *
-```
+{{<rawhtml>}}
+<figure>
+    <img src="./teste-orientacao.svg" alt="Visualização do teste de orientação" style="background-color: white; display: block; margin: auto; padding: 1rem;">
+    <figcaption style="text-align:center">
+        Figura 2 – Visualização do teste de orientação.
+    </figcaption>
+</figure>
+{{</rawhtml>}}
 
 O sinal do determinante
 
@@ -118,45 +113,28 @@ permite determinar a orientação relativa entre os vetores.
 Uma dificuldade desse algoritmo ocorre quando a semirreta horizontal passa exatamente por um vértice do polígono.
 
 Nessa situação, duas arestas compartilham o mesmo ponto de interseção e uma implementação ingênua pode contabilizar esse cruzamento duas vezes. Alciatore e Miranda propõem tratar esses casos atribuindo meia contribuição \\(\pm\frac{1}{2}\\) aos vértices, evitando contagens duplicadas.
+Quando a semirreta passa exatamente por um vértice horizontal, nenhuma contribuição adicional deve ser contabilizada. Veja a Figura 3.
 
-```goat
-             * v{i+1}
-            ^
-           /
-q *---*---*----->    w = w + 1/2
-     ^
-    /
-   * vi
-
-
-             * v{i+1}
-            /
-           v
-q *---*---*----->    w = w - 1/2
-     /
-    v
-   * vi
-
-```
-
-Quando a semirreta passa exatamente por um vértice horizontal, nenhuma contribuição adicional deve ser contabilizada.
-
-```goat
-q *---*---*----->    
-```
+{{<rawhtml>}}
+<figure>
+    <img src="./casos-borda.svg" alt="Casos de borda" style="background-color: white; display: block; margin: auto; padding: 1rem;">
+    <figcaption style="text-align:center">
+        Figura 3 – Casos de borda
+    </figcaption>
+</figure>
+{{</rawhtml>}}
 
 ## Limitações
 Embora o teste de ponto em polígono seja suficiente para o problema encontrado na aplicação, ele não resolve o problema geral de interseção entre polígonos. Considere, por exemplo, a situação abaixo.
 
-```goat{width="200px"}
-
-  +-----+
-+-+-----+-+
-|         |
-+-+-----+-+
-  +-----+
-
-```
+{{<rawhtml>}}
+<figure>
+    <img src="./limitacao.svg" alt="Limitação do algoritmo" style="background-color: white; display: block; margin: auto; padding: 1rem;">
+    <figcaption style="text-align:center">
+        Figura 4 – Limitação do algoritmo
+    </figcaption>
+</figure>
+{{</rawhtml>}}
 
 Os dois polígonos se intersectam. Entretanto, nenhum vértice de um polígono pertence ao interior do outro. Assim, um algoritmo baseado exclusivamente em testes de ponto-no-polígono concluirá incorretamente que não existe interseção entre eles, produzindo um falso negativo. 
 
